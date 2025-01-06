@@ -97,5 +97,160 @@
   transform: scale(1.2);
 }
 .task.taskdone-container {
-  background-color: green;
+  background-color: rgb(74, 158, 74);
+}
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-actions button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dialog-actions button:first-child {
+  background-color: #f4adad;
+  border-radius: 100px;
+  box-shadow: rgba(180, 50, 58, 0.2) 0 -25px 18px -14px inset,rgba(180, 50, 58, 0.2) 0 1px 2px,rgba(180, 50, 58, 0.2) 0 2px 4px,rgba(180, 50, 58, 0.2) 0 4px 8px,rgba(180, 50, 58, 0.2) 0 8px 16px,rgba(180, 50, 58, 0.2) 0 16px 32px;
+  color: rgb(236, 14, 14);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.dialog-actions button:first-child:hover{
+  box-shadow: rgba(180, 50, 58, 0.2) 0 -25px 18px -14px inset,rgba(180, 50, 58, 0.2) 0 1px 2px,rgba(180, 50, 58, 0.2) 0 2px 4px,rgba(180, 50, 58, 0.2) 0 4px 8px,rgba(180, 50, 58, 0.2) 0 8px 16px,rgba(180, 50, 58, 0.2) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.dialog-actions button:last-child {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.dialog-actions button:last-child:hover{
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+
+
+
+
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-buttons button.cancel-btn {
+  background-color: #f4adad;
+  border-radius: 100px;
+  box-shadow: rgba(180, 50, 58, 0.2) 0 -25px 18px -14px inset,rgba(180, 50, 58, 0.2) 0 1px 2px,rgba(180, 50, 58, 0.2) 0 2px 4px,rgba(180, 50, 58, 0.2) 0 4px 8px,rgba(180, 50, 58, 0.2) 0 8px 16px,rgba(180, 50, 58, 0.2) 0 16px 32px;
+  color: rgb(236, 14, 14);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.modal-buttons button.cancel-btn:hover{
+  box-shadow: rgba(180, 50, 58, 0.2) 0 -25px 18px -14px inset,rgba(180, 50, 58, 0.2) 0 1px 2px,rgba(180, 50, 58, 0.2) 0 2px 4px,rgba(180, 50, 58, 0.2) 0 4px 8px,rgba(180, 50, 58, 0.2) 0 8px 16px,rgba(180, 50, 58, 0.2) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.modal-buttons button.confirm-btn {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.modal-buttons button.confirm-btn:hover{
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }

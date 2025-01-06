@@ -6,6 +6,10 @@ import { BsCircleFill, BsFillTrashFill, BsFillCheckCircleFill } from 'react-icon
 
 function Home() {
     const [todos, setTodos] = useState([]);
+    const [showDialog, setShowDialog] = useState(false);
+    const [currentTaskId, setCurrentTaskId] = useState(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [taskToDelete, setTaskToDelete] = useState(null);
 
     useEffect(() => {
         axios.get('http://localhost:3001/get')
@@ -14,33 +18,55 @@ function Home() {
     }, []);
 
     const handleEdit = (id) => {
-        axios.put('http://localhost:3001/update/'+id)
-            .then(result =>{
-                location.reload()
+        setCurrentTaskId(id);
+        setShowDialog(true); 
+    };
+
+    const confirmEdit = () => {
+        axios.put(`http://localhost:3001/update/${currentTaskId}`)
+            .then(() => {
+                setShowDialog(false);
+                setCurrentTaskId(null);
+                location.reload();
             })
             .catch(err => console.log(err));
+    };
 
-    }
-
-    const handleDelete =(id) => {
-        axios.delete('http://localhost:3001/delete/'+id)
-            .then(result =>{
-                location.reload()
+    const handleDeleteClick = (id) => {
+        setTaskToDelete(id);  
+        setShowDeleteModal(true);  
+      };
+    
+      
+      const handleDelete = () => {
+        if (taskToDelete) {
+          axios.delete('http://localhost:3001/delete/' + taskToDelete)
+            .then(result => {
+              location.reload();
             })
             .catch(err => console.log(err));
-        
-    }
+        }
+        setShowDeleteModal(false);  
+      };
+    
+      
+      const handleCloseDeleteModal = () => {
+        setShowDeleteModal(false); 
+      };
+
+    const sortedTodos = [...todos].sort((a, b) => a.done - b.done); 
+
 
     return (
         <div className='home'>
             <h2>Todo List</h2>
             <Create />
             {
-                todos.length === 0
+                sortedTodos.length === 0
                     ?
                     <div><h2>No records</h2></div>
                     :
-                    todos.map(todo => (
+                    sortedTodos.map(todo => (
                         
                         <div className={`task ${todo.done ? "taskdone-container" : "done-container"}`}>
                             
@@ -55,13 +81,37 @@ function Home() {
                             </div>
                             <div>
                                 <span><BsFillTrashFill className='icon' 
-                                 onClick={() => handleDelete(todo._id)}/></span>
+                                 onClick={() => handleDeleteClick(todo._id)}/></span>
                             </div>
                         </div>
                     ))
             }
+            {showDialog && (
+                <div className="dialog-overlay">
+                    <div className="dialog-box">
+                        <p><b>Before marking "Done", please make sure that you have completed the task.</b></p>
+                        <div className="dialog-actions">
+                            <button onClick={() => setShowDialog(false)}>I haven't completed the task</button>
+                            <button onClick={confirmEdit}>I've completed the task</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Are you sure you want to delete this task?</h2>
+            <div className="modal-buttons">
+              <button className="cancel-btn" onClick={handleCloseDeleteModal}>Cancel</button>
+              <button className="confirm-btn" onClick={handleDelete}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
         </div>
     );
+    
 }
+
 
 export default Home;
